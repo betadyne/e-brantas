@@ -81,107 +81,113 @@ export default function TambahDataPage() {
   return (
     <Layout>
       <div className="max-w-4xl mx-auto">
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-2">
+        <div className="mb-6 md:mb-8">
+          <div className="flex items-center gap-3 mb-2 mobile-header">
             <div className="rounded-lg bg-blue-600 p-2">
-              <Plus className="h-6 w-6 text-white" />
+              <Plus className="h-5 w-5 md:h-6 md:w-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Tambah Data Tahanan</h1>
-              <p className="text-gray-600">Tambahkan data tahanan narkoba baru ke sistem</p>
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900">Tambah Data Tahanan</h1>
+              <p className="text-sm md:text-base text-gray-600">Tambahkan data tahanan narkoba baru ke sistem</p>
             </div>
           </div>
         </div>
 
-        <Card className="shadow-lg border-0">
-          <CardHeader>
-            <CardTitle className="text-xl">Form Data Tahanan</CardTitle>
-            <CardDescription>
+        <Card className="shadow-lg border-0 mobile-card">
+          <CardHeader className="xs-mobile-header">
+            <CardTitle className="text-lg md:text-xl">Form Data Tahanan</CardTitle>
+            <CardDescription className="text-sm md:text-base">
               Isi semua informasi yang diperlukan dengan lengkap dan akurat
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="xs-mobile-padding">
             {success && (
               <Alert className="mb-6 border-green-200 bg-green-50">
                 <CheckCircle className="h-4 w-4 text-green-600" />
-                <AlertDescription className="text-green-800">
+                <AlertDescription className="text-green-800 text-sm md:text-base">
                   Data tahanan berhasil ditambahkan ke sistem
                 </AlertDescription>
               </Alert>
             )}
 
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mobile-form-grid">
                 <div className="space-y-2">
-                  <Label htmlFor="nama_tersangka">Nama Tersangka <span className="text-red-500">*</span></Label>
+                  <Label htmlFor="nama_tersangka" className="text-sm md:text-base">
+                    Nama Tersangka <span className="text-red-500">*</span>
+                  </Label>
                   <Input
                     id="nama_tersangka"
                     value={formData.nama_tersangka}
                     onChange={(e) => handleInputChange('nama_tersangka', e.target.value)}
                     placeholder="Masukkan nama tersangka"
                     required
-                    className="h-11"
+                    className="h-11 md:h-12 touch-input ios-input android-input xs-mobile-input"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="lkn">LKN (Laporan Kejadian Narkoba)</Label>
+                  <Label htmlFor="lkn" className="text-sm md:text-base">LKN (Laporan Kejadian Narkoba)</Label>
                   <Input
                     id="lkn"
                     type="date"
                     value={formData.lkn}
                     onChange={(e) => handleInputChange('lkn', e.target.value)}
-                    className="h-11"
+                    className="h-11 md:h-12 touch-input ios-input android-input xs-mobile-input"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="barang_bukti">Barang Bukti</Label>
+                  <Label htmlFor="barang_bukti" className="text-sm md:text-base">Barang Bukti</Label>
                   <Input
                     id="barang_bukti"
                     value={formData.barang_bukti}
                     onChange={(e) => handleInputChange('barang_bukti', e.target.value)}
                     placeholder="Contoh: 5 Gram Sabu"
-                    className="h-11"
+                    className="h-11 md:h-12 touch-input ios-input android-input xs-mobile-input"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="sp_han">SP-HAN <span className="text-red-500">*</span></Label>
+                  <Label htmlFor="sp_han" className="text-sm md:text-base">
+                    SP-HAN <span className="text-red-500">*</span>
+                  </Label>
                   <Input
                     id="sp_han"
                     type="date"
                     value={formData.sp_han}
                     onChange={(e) => handleInputChange('sp_han', e.target.value)}
                     required
-                    className="h-11"
+                    className="h-11 md:h-12 touch-input ios-input android-input xs-mobile-input"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label>Melanggar Pasal <span className="text-red-500">*</span></Label>
+                  <Label className="text-sm md:text-base">
+                    Melanggar Pasal <span className="text-red-500">*</span>
+                  </Label>
                   <div className="flex gap-2">
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
-                        <span className="text-sm font-medium text-gray-700 min-w-12">Pasal</span>
+                        <span className="text-xs md:text-sm font-medium text-gray-700 min-w-12">Pasal</span>
                         <Input
                           value={formData.pasal_nomor}
                           onChange={(e) => handleInputChange('pasal_nomor', e.target.value)}
                           placeholder="114"
                           required
-                          className="h-11"
+                          className="h-11 md:h-12 touch-input ios-input android-input xs-mobile-input"
                         />
                       </div>
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
-                        <span className="text-sm font-medium text-gray-700 min-w-12">Ayat</span>
+                        <span className="text-xs md:text-sm font-medium text-gray-700 min-w-12">Ayat</span>
                         <Input
                           value={formData.pasal_ayat}
                           onChange={(e) => handleInputChange('pasal_ayat', e.target.value)}
                           placeholder="1"
                           required
-                          className="h-11"
+                          className="h-11 md:h-12 touch-input ios-input android-input xs-mobile-input"
                         />
                       </div>
                     </div>
@@ -189,7 +195,9 @@ export default function TambahDataPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="masa_tahanan">Masa Tahanan <span className="text-red-500">*</span></Label>
+                  <Label htmlFor="masa_tahanan" className="text-sm md:text-base">
+                    Masa Tahanan <span className="text-red-500">*</span>
+                  </Label>
                   <div className="flex items-center gap-2">
                     <Input
                       id="masa_tahanan"
@@ -199,28 +207,30 @@ export default function TambahDataPage() {
                       placeholder="20"
                       required
                       min="1"
-                      className="h-11"
+                      className="h-11 md:h-12 touch-input ios-input android-input xs-mobile-input"
                     />
-                    <span className="text-sm font-medium text-gray-700 min-w-12">Hari</span>
+                    <span className="text-xs md:text-sm font-medium text-gray-700 min-w-12">Hari</span>
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="nama_penyidik">Nama Penyidik <span className="text-red-500">*</span></Label>
+                  <Label htmlFor="nama_penyidik" className="text-sm md:text-base">
+                    Nama Penyidik <span className="text-red-500">*</span>
+                  </Label>
                   <Input
                     id="nama_penyidik"
                     value={formData.nama_penyidik}
                     onChange={(e) => handleInputChange('nama_penyidik', e.target.value)}
                     placeholder="Masukkan nama penyidik"
                     required
-                    className="h-11"
+                    className="h-11 md:h-12 touch-input ios-input android-input xs-mobile-input"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="keterangan">Keterangan</Label>
+                  <Label htmlFor="keterangan" className="text-sm md:text-base">Keterangan</Label>
                   <Select onValueChange={(value) => handleInputChange('keterangan', value)} value={formData.keterangan}>
-                    <SelectTrigger className="h-11">
+                    <SelectTrigger className="h-11 md:h-12 touch-input">
                       <SelectValue placeholder="Pilih keterangan" />
                     </SelectTrigger>
                     <SelectContent>
@@ -232,7 +242,7 @@ export default function TambahDataPage() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-end gap-4 pt-6 border-t">
+              <div className="flex flex-col md:flex-row items-center justify-end gap-4 pt-6 border-t">
                 <Button
                   type="button"
                   variant="outline"
@@ -251,24 +261,24 @@ export default function TambahDataPage() {
                     setSuccess(false);
                   }}
                   disabled={loading}
-                  className="h-11 px-6"
+                  className="w-full md:w-auto h-11 md:h-12 px-6 touch-button xs-mobile-button"
                 >
                   Reset Form
                 </Button>
                 <Button
                   type="submit"
                   disabled={loading}
-                  className="h-11 px-8 bg-blue-600 hover:bg-blue-700"
+                  className="w-full md:w-auto h-11 md:h-12 px-8 bg-blue-600 hover:bg-blue-700 touch-button ios-button android-button xs-mobile-button"
                 >
                   {loading ? (
                     <div className="flex items-center gap-2">
                       <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                      <span>Menyimpan...</span>
+                      <span className="text-sm md:text-base">Menyimpan...</span>
                     </div>
                   ) : (
                     <div className="flex items-center gap-2">
                       <Plus className="h-4 w-4" />
-                      <span>Tambahkan</span>
+                      <span className="text-sm md:text-base">Tambahkan</span>
                     </div>
                   )}
                 </Button>

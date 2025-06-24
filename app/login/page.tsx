@@ -50,15 +50,15 @@ export default function LoginPage() {
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full navy-gradient mb-4">
             <Shield className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">E-Brantas</h1>
-          <p className="text-gray-600">Sistem Manajemen Tahanan Narkoba</p>
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">E-Brantas</h1>
+          <p className="text-sm md:text-base text-gray-600">Sistem Manajemen Tahanan Narkoba</p>
         </div>
 
         {/* Login Form */}
-        <Card className="shadow-xl border-0">
-          <CardHeader>
-            <CardTitle className="text-xl text-center">Masuk ke Sistem</CardTitle>
-            <CardDescription className="text-center">
+        <Card className="shadow-xl border-0 mobile-card">
+          <CardHeader className="text-center">
+            <CardTitle className="text-lg md:text-xl">Masuk ke Sistem</CardTitle>
+            <CardDescription className="text-sm md:text-base">
               Masukkan username dan password Anda
             </CardDescription>
           </CardHeader>
@@ -67,12 +67,12 @@ export default function LoginPage() {
               {error && (
                 <Alert variant="destructive">
                   <AlertCircle className="h-4 w-4" />
-                  <AlertDescription>{error}</AlertDescription>
+                  <AlertDescription className="text-sm">{error}</AlertDescription>
                 </Alert>
               )}
               
               <div className="space-y-2">
-                <Label htmlFor="username">Username</Label>
+                <Label htmlFor="username" className="text-sm md:text-base">Username</Label>
                 <Input
                   id="username"
                   type="text"
@@ -80,12 +80,12 @@ export default function LoginPage() {
                   onChange={(e) => setUsername(e.target.value)}
                   placeholder="Masukkan username"
                   required
-                  className="h-11"
+                  className="h-11 md:h-12 touch-input ios-input android-input xs-mobile-input"
                 />
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password" className="text-sm md:text-base">Password</Label>
                 <Input
                   id="password"
                   type="password"
@@ -93,13 +93,13 @@ export default function LoginPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Masukkan password"
                   required
-                  className="h-11"
+                  className="h-11 md:h-12 touch-input ios-input android-input xs-mobile-input"
                 />
               </div>
               
               <Button
                 type="submit"
-                className="w-full h-11 bg-blue-600 hover:bg-blue-700"
+                className="w-full h-11 md:h-12 bg-blue-600 hover:bg-blue-700 touch-button ios-button android-button mobile-button"
                 disabled={loading}
               >
                 {loading ? (
