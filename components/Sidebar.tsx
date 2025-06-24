@@ -54,7 +54,7 @@ export function Sidebar() {
             <Shield className="h-8 w-8 text-white" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-white">E-Brantas</h1>
+            <h1 className="text-xl font-bold text-white">e-Brantas</h1>
             <p className="text-sm text-blue-100">Manajemen Tahanan</p>
           </div>
         </div>

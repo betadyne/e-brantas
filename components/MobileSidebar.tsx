@@ -44,7 +44,7 @@ export function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
               <Shield className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h1 className="text-lg font-bold text-white">E-Brantas</h1>
+              <h1 className="text-lg font-bold text-white">e-Brantas</h1>
               <p className="text-xs text-blue-100">Manajemen Tahanan</p>
             </div>
           </div>

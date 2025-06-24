@@ -7,7 +7,7 @@ import { Toaster } from '@/components/ui/sonner';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'E-Brantas - Sistem Manajemen Tahanan Narkoba',
+  title: 'e-Brantas',
   description: 'Aplikasi untuk mengelola data tahanan narkoba',
 };
 

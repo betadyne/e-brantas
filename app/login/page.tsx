@@ -55,7 +55,7 @@ export default function LoginPage() {
           <div className="inline-flex items-center justify-center w-14 h-14 lg:w-16 lg:h-16 rounded-full navy-gradient mb-4">
             <Shield className="w-7 h-7 lg:w-8 lg:h-8 text-white" />
           </div>
-          <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">E-Brantas</h1>
+          <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">e-Brantas</h1>
           <p className="text-sm lg:text-base text-gray-600">Sistem Manajemen Tahanan Narkoba</p>
         </div>
 
