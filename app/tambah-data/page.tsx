@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Layout } from '@/components/Layout';
+import { ProtectedRoute } from '@/components/ProtectedRoute';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -79,214 +80,206 @@ export default function TambahDataPage() {
   };
 
   return (
-    <Layout>
-      <div className="max-w-4xl mx-auto">
-        <div className="mb-6 md:mb-8">
-          <div className="flex items-center gap-3 mb-2 mobile-header">
-            <div className="rounded-lg bg-blue-600 p-2">
-              <Plus className="h-5 w-5 md:h-6 md:w-6 text-white" />
-            </div>
-            <div>
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900">Tambah Data Tahanan</h1>
-              <p className="text-sm md:text-base text-gray-600">Tambahkan data tahanan narkoba baru ke sistem</p>
+    <ProtectedRoute>
+      <Layout>
+        <div className="max-w-4xl mx-auto">
+          <div className="mb-6 lg:mb-8">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="rounded-lg bg-blue-600 p-2">
+                <Plus className="h-5 w-5 lg:h-6 lg:w-6 text-white" />
+              </div>
+              <div>
+                <h1 className="text-2xl lg:text-3xl font-bold text-gray-900">Tambah Data Tahanan</h1>
+                <p className="text-sm lg:text-base text-gray-600">Tambahkan data tahanan narkoba baru ke sistem</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <Card className="shadow-lg border-0 mobile-card">
-          <CardHeader className="xs-mobile-header">
-            <CardTitle className="text-lg md:text-xl">Form Data Tahanan</CardTitle>
-            <CardDescription className="text-sm md:text-base">
-              Isi semua informasi yang diperlukan dengan lengkap dan akurat
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="xs-mobile-padding">
-            {success && (
-              <Alert className="mb-6 border-green-200 bg-green-50">
-                <CheckCircle className="h-4 w-4 text-green-600" />
-                <AlertDescription className="text-green-800 text-sm md:text-base">
-                  Data tahanan berhasil ditambahkan ke sistem
-                </AlertDescription>
-              </Alert>
-            )}
+          <Card className="shadow-lg border-0">
+            <CardHeader>
+              <CardTitle className="text-lg lg:text-xl">Form Data Tahanan</CardTitle>
+              <CardDescription className="text-sm lg:text-base">
+                Isi semua informasi yang diperlukan dengan lengkap dan akurat
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              {success && (
+                <Alert className="mb-6 border-green-200 bg-green-50">
+                  <CheckCircle className="h-4 w-4 text-green-600" />
+                  <AlertDescription className="text-green-800">
+                    Data tahanan berhasil ditambahkan ke sistem
+                  </AlertDescription>
+                </Alert>
+              )}
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mobile-form-grid">
-                <div className="space-y-2">
-                  <Label htmlFor="nama_tersangka" className="text-sm md:text-base">
-                    Nama Tersangka <span className="text-red-500">*</span>
-                  </Label>
-                  <Input
-                    id="nama_tersangka"
-                    value={formData.nama_tersangka}
-                    onChange={(e) => handleInputChange('nama_tersangka', e.target.value)}
-                    placeholder="Masukkan nama tersangka"
-                    required
-                    className="h-11 md:h-12 touch-input ios-input android-input xs-mobile-input"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="lkn" className="text-sm md:text-base">LKN (Laporan Kejadian Narkoba)</Label>
-                  <Input
-                    id="lkn"
-                    type="date"
-                    value={formData.lkn}
-                    onChange={(e) => handleInputChange('lkn', e.target.value)}
-                    className="h-11 md:h-12 touch-input ios-input android-input xs-mobile-input"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="barang_bukti" className="text-sm md:text-base">Barang Bukti</Label>
-                  <Input
-                    id="barang_bukti"
-                    value={formData.barang_bukti}
-                    onChange={(e) => handleInputChange('barang_bukti', e.target.value)}
-                    placeholder="Contoh: 5 Gram Sabu"
-                    className="h-11 md:h-12 touch-input ios-input android-input xs-mobile-input"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="sp_han" className="text-sm md:text-base">
-                    SP-HAN <span className="text-red-500">*</span>
-                  </Label>
-                  <Input
-                    id="sp_han"
-                    type="date"
-                    value={formData.sp_han}
-                    onChange={(e) => handleInputChange('sp_han', e.target.value)}
-                    required
-                    className="h-11 md:h-12 touch-input ios-input android-input xs-mobile-input"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label className="text-sm md:text-base">
-                    Melanggar Pasal <span className="text-red-500">*</span>
-                  </Label>
-                  <div className="flex gap-2">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs md:text-sm font-medium text-gray-700 min-w-12">Pasal</span>
-                        <Input
-                          value={formData.pasal_nomor}
-                          onChange={(e) => handleInputChange('pasal_nomor', e.target.value)}
-                          placeholder="114"
-                          required
-                          className="h-11 md:h-12 touch-input ios-input android-input xs-mobile-input"
-                        />
-                      </div>
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs md:text-sm font-medium text-gray-700 min-w-12">Ayat</span>
-                        <Input
-                          value={formData.pasal_ayat}
-                          onChange={(e) => handleInputChange('pasal_ayat', e.target.value)}
-                          placeholder="1"
-                          required
-                          className="h-11 md:h-12 touch-input ios-input android-input xs-mobile-input"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="masa_tahanan" className="text-sm md:text-base">
-                    Masa Tahanan <span className="text-red-500">*</span>
-                  </Label>
-                  <div className="flex items-center gap-2">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="nama_tersangka" className="text-sm lg:text-base">Nama Tersangka <span className="text-red-500">*</span></Label>
                     <Input
-                      id="masa_tahanan"
-                      type="number"
-                      value={formData.masa_tahanan}
-                      onChange={(e) => handleInputChange('masa_tahanan', e.target.value)}
-                      placeholder="20"
+                      id="nama_tersangka"
+                      value={formData.nama_tersangka}
+                      onChange={(e) => handleInputChange('nama_tersangka', e.target.value)}
+                      placeholder="Masukkan nama tersangka"
                       required
-                      min="1"
-                      className="h-11 md:h-12 touch-input ios-input android-input xs-mobile-input"
+                      className="h-10 lg:h-11"
                     />
-                    <span className="text-xs md:text-sm font-medium text-gray-700 min-w-12">Hari</span>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="lkn" className="text-sm lg:text-base">LKN (Laporan Kejadian Narkoba)</Label>
+                    <Input
+                      id="lkn"
+                      type="date"
+                      value={formData.lkn}
+                      onChange={(e) => handleInputChange('lkn', e.target.value)}
+                      className="h-10 lg:h-11"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="barang_bukti" className="text-sm lg:text-base">Barang Bukti</Label>
+                    <Input
+                      id="barang_bukti"
+                      value={formData.barang_bukti}
+                      onChange={(e) => handleInputChange('barang_bukti', e.target.value)}
+                      placeholder="Contoh: 5 Gram Sabu"
+                      className="h-10 lg:h-11"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="sp_han" className="text-sm lg:text-base">SP-HAN <span className="text-red-500">*</span></Label>
+                    <Input
+                      id="sp_han"
+                      type="date"
+                      value={formData.sp_han}
+                      onChange={(e) => handleInputChange('sp_han', e.target.value)}
+                      required
+                      className="h-10 lg:h-11"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label className="text-sm lg:text-base">Melanggar Pasal <span className="text-red-500">*</span></Label>
+                    <div className="flex gap-2">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs lg:text-sm font-medium text-gray-700 min-w-10 lg:min-w-12">Pasal</span>
+                          <Input
+                            value={formData.pasal_nomor}
+                            onChange={(e) => handleInputChange('pasal_nomor', e.target.value)}
+                            placeholder="114"
+                            required
+                            className="h-10 lg:h-11"
+                          />
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs lg:text-sm font-medium text-gray-700 min-w-10 lg:min-w-12">Ayat</span>
+                          <Input
+                            value={formData.pasal_ayat}
+                            onChange={(e) => handleInputChange('pasal_ayat', e.target.value)}
+                            placeholder="1"
+                            required
+                            className="h-10 lg:h-11"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="masa_tahanan" className="text-sm lg:text-base">Masa Tahanan <span className="text-red-500">*</span></Label>
+                    <div className="flex items-center gap-2">
+                      <Input
+                        id="masa_tahanan"
+                        type="number"
+                        value={formData.masa_tahanan}
+                        onChange={(e) => handleInputChange('masa_tahanan', e.target.value)}
+                        placeholder="20"
+                        required
+                        min="1"
+                        className="h-10 lg:h-11"
+                      />
+                      <span className="text-xs lg:text-sm font-medium text-gray-700 min-w-10 lg:min-w-12">Hari</span>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="nama_penyidik" className="text-sm lg:text-base">Nama Penyidik <span className="text-red-500">*</span></Label>
+                    <Input
+                      id="nama_penyidik"
+                      value={formData.nama_penyidik}
+                      onChange={(e) => handleInputChange('nama_penyidik', e.target.value)}
+                      placeholder="Masukkan nama penyidik"
+                      required
+                      className="h-10 lg:h-11"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="keterangan" className="text-sm lg:text-base">Keterangan</Label>
+                    <Select onValueChange={(value) => handleInputChange('keterangan', value)} value={formData.keterangan}>
+                      <SelectTrigger className="h-10 lg:h-11">
+                        <SelectValue placeholder="Pilih keterangan" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="sidik">Sidik</SelectItem>
+                        <SelectItem value="tahap 1">Tahap 1</SelectItem>
+                        <SelectItem value="tahap 2">Tahap 2</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="nama_penyidik" className="text-sm md:text-base">
-                    Nama Penyidik <span className="text-red-500">*</span>
-                  </Label>
-                  <Input
-                    id="nama_penyidik"
-                    value={formData.nama_penyidik}
-                    onChange={(e) => handleInputChange('nama_penyidik', e.target.value)}
-                    placeholder="Masukkan nama penyidik"
-                    required
-                    className="h-11 md:h-12 touch-input ios-input android-input xs-mobile-input"
-                  />
+                <div className="flex flex-col sm:flex-row items-center justify-end gap-4 pt-6 border-t">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => {
+                      setFormData({
+                        nama_tersangka: '',
+                        lkn: '',
+                        barang_bukti: '',
+                        sp_han: '',
+                        pasal_nomor: '',
+                        pasal_ayat: '',
+                        masa_tahanan: '',
+                        nama_penyidik: '',
+                        keterangan: ''
+                      });
+                      setSuccess(false);
+                    }}
+                    disabled={loading}
+                    className="h-10 lg:h-11 px-4 lg:px-6 w-full sm:w-auto"
+                  >
+                    Reset Form
+                  </Button>
+                  <Button
+                    type="submit"
+                    disabled={loading}
+                    className="h-10 lg:h-11 px-6 lg:px-8 bg-blue-600 hover:bg-blue-700 w-full sm:w-auto"
+                  >
+                    {loading ? (
+                      <div className="flex items-center gap-2">
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                        <span>Menyimpan...</span>
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-2">
+                        <Plus className="h-4 w-4" />
+                        <span>Tambahkan</span>
+                      </div>
+                    )}
+                  </Button>
                 </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="keterangan" className="text-sm md:text-base">Keterangan</Label>
-                  <Select onValueChange={(value) => handleInputChange('keterangan', value)} value={formData.keterangan}>
-                    <SelectTrigger className="h-11 md:h-12 touch-input">
-                      <SelectValue placeholder="Pilih keterangan" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="sidik">Sidik</SelectItem>
-                      <SelectItem value="tahap 1">Tahap 1</SelectItem>
-                      <SelectItem value="tahap 2">Tahap 2</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-
-              <div className="flex flex-col md:flex-row items-center justify-end gap-4 pt-6 border-t">
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={() => {
-                    setFormData({
-                      nama_tersangka: '',
-                      lkn: '',
-                      barang_bukti: '',
-                      sp_han: '',
-                      pasal_nomor: '',
-                      pasal_ayat: '',
-                      masa_tahanan: '',
-                      nama_penyidik: '',
-                      keterangan: ''
-                    });
-                    setSuccess(false);
-                  }}
-                  disabled={loading}
-                  className="w-full md:w-auto h-11 md:h-12 px-6 touch-button xs-mobile-button"
-                >
-                  Reset Form
-                </Button>
-                <Button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full md:w-auto h-11 md:h-12 px-8 bg-blue-600 hover:bg-blue-700 touch-button ios-button android-button xs-mobile-button"
-                >
-                  {loading ? (
-                    <div className="flex items-center gap-2">
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                      <span className="text-sm md:text-base">Menyimpan...</span>
-                    </div>
-                  ) : (
-                    <div className="flex items-center gap-2">
-                      <Plus className="h-4 w-4" />
-                      <span className="text-sm md:text-base">Tambahkan</span>
-                    </div>
-                  )}
-                </Button>
-              </div>
-            </form>
-          </CardContent>
-        </Card>
-      </div>
-    </Layout>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      </Layout>
+    </ProtectedRoute>
   );
 }
