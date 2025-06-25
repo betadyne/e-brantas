@@ -407,9 +407,9 @@ export default function DaftarTahananPage() {
                       <SelectValue placeholder="Pilih keterangan" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="sidik">Sidik</SelectItem>
-                      <SelectItem value="tahap 1">Tahap 1</SelectItem>
-                      <SelectItem value="tahap 2">Tahap 2</SelectItem>
+                      <SelectItem value="Sidik">Sidik</SelectItem>
+                      <SelectItem value="Tahap 1">Tahap 1</SelectItem>
+                      <SelectItem value="Tahap 2">Tahap 2</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
